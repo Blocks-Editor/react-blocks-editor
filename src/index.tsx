@@ -7,35 +7,39 @@ const DEFAULT_URL =
 // TODO: Rete.js node type checking
 type Node = any
 
-interface State {
-  version: string
+export interface EditorState {
   name: string
-  description?: string
-  nodes: [Node]
+  description: string
+  version: string
+  language: string
+  output: string
+  nodes: Record<string, Node>
 }
 
 interface LocalMessage {
   type: 'load'
-  state: State
+  state: Partial<EditorState>
 }
 
 interface RemoteMessage {
   type: 'save'
-  state: State
+  state: EditorState
 }
 
 interface LoadArgs {
   sendMessage: (message: LocalMessage) => void
-  loadState: (state: State) => void
+  loadState: (state: Partial<EditorState>) => void
 }
 
 interface QueryOptions {
-  menu?: 'hidden'
+  menu?: 'hidden' | 'load' | 'tutorials' | 'settings' | 'social'
+  theme?: 'dark' | 'grey'
+  tutorial?: string
 }
 
 export interface EditorPropTypes {
   url?: string
-  onSave?: (state: State) => void
+  onSave?: (state: EditorState) => void
   options?: QueryOptions
   children?: (args: LoadArgs) => void
 
@@ -46,6 +50,7 @@ export const BlocksEditor = ({
   url = DEFAULT_URL,
   onSave,
   options,
+  style,
   children,
   ...rest
 }: EditorPropTypes) => {
@@ -76,7 +81,9 @@ export const BlocksEditor = ({
         iframeRef.contentWindow.postMessage(JSON.stringify(message), '*')
       }
     }
-    const loadState = (state: State) => sendMessage({ type: 'load', state })
+    const loadState = (state: Partial<EditorState>) => {
+      sendMessage({ type: 'load', state })
+    }
 
     if (children) {
       children({
@@ -89,6 +96,7 @@ export const BlocksEditor = ({
   return (
     <iframe
       ref={setIframeRef}
+      style={{ border: '0px', width: '100%', height: 500, ...style }}
       onLoad={handleLoad}
       src={options ? `${url}?${stringify(options)}` : url}
       {...(rest as object)}

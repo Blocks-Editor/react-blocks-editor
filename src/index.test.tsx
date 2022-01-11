@@ -13,7 +13,7 @@ describe('BlocksEditor', () => {
       const wrapper = shallow(
         <BlocksEditor>
           {() => {
-            resolve()
+            resolve(true)
           }}
         </BlocksEditor>
       )
