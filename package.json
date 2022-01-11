@@ -63,5 +63,14 @@
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "React",
+    "Smart Contract",
+    "Motoko",
+    "Canister",
+    "Dfinity",
+    "Internet Computer",
+    "Blockchain"
   ]
 }
