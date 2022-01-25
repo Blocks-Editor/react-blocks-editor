@@ -1,6 +1,6 @@
 {
   "name": "react-blocks-editor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Embed the Blocks Editor anywhere using a React component.",
   "author": "Ryan Vandersmith",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "test:watch": "react-scripts test --env=jsdom"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
