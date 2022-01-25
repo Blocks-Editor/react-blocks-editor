@@ -32,15 +32,16 @@ interface LoadArgs {
 }
 
 interface QueryOptions {
-  menu?: 'hidden' | 'load' | 'tutorials' | 'settings' | 'social'
-  theme?: 'dark' | 'grey'
-  tutorial?: string
+  menu: 'hidden' | 'load' | 'tutorials' | 'settings' | 'social'
+  theme: 'dark' | 'grey'
+  familiarity: boolean
+  tutorial: string
 }
 
 export interface EditorPropTypes {
   url?: string
   onSave?: (state: EditorState) => void
-  options?: QueryOptions
+  options?: Partial<QueryOptions>
   children?: (args: LoadArgs) => void
 
   [x: string]: any
