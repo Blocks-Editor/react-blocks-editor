@@ -34,7 +34,7 @@ interface LoadArgs {
 interface QueryOptions {
   menu: 'hidden' | 'load' | 'tutorials' | 'settings' | 'social'
   theme: 'dark' | 'grey'
-  familiarity: boolean
+  familiarity: boolean | string
   tutorial: string
 }
 
